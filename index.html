@@ -14,10 +14,11 @@
       canvas.width = document.documentElement.clientWidth;
       canvas.height = document.documentElement.clientHeight;
       //画布的宽高为文档的宽高
+
       let ctx = canvas.getContext("2d");
       let painting = false;
-      ctx.fillStyle = "black";
-      ctx.strokeStyle = "none";
+      ctx.fillStyle = "black"; //填充颜色
+      ctx.strokeStyle = "none"; //描边
 
       canvas.onmousedown = () => {
         painting = true;
@@ -37,23 +38,6 @@
       canvas.onmouseup = () => {
         painting = false;
       };
-
-      // canvas.onclick = (e) => {
-      //   console.log(e.clientX);
-      //   console.log(e.clientY);
-      //   //console.log 调试大法
-      //   let div = document.createElement("div"); //创建一个div
-      //   div.style.position = "absolute";
-      //   div.style.left = e.clientX + "px";
-      //   div.style.top = e.clientY + "px";
-      //   div.style.width = "6px";
-      //   div.style.height = "6px";
-      //   div.style.marginLeft = "-3px";
-      //   div.style.marginTop = "-3px";
-      //   div.style.borderRadius = "50%";
-      //   div.style.backgroundColor = "black";
-      //   canvas.appendChild(div);
-      // };
     </script>
   </body>
 </html>
