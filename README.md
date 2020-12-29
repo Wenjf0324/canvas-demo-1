@@ -1,5 +1,5 @@
 # 开发
 ```
 yarn global add parcel-bundler
-parcel src/main.html
+parcel src/index.html
 ```
