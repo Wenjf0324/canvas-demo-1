@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+    <title>简易画板</title>
+    <link rel="stylesheet" href="style.9ad4c07e.css">
+  </head>
+  <body>
+    <div class="menu">
+      <div class="black"></div>
+      <div class="red"></div>
+      <div class="orange"></div>
+      <div class="green"></div>
+      <div class="purple"></div>
+    </div>
+    <canvas id="canvas" width="100" height="100"></canvas>
+    <script>var canvas = document.getElementById("canvas"); //画布的宽高为屏幕的宽高
+
+canvas.width = document.documentElement.clientWidth;
+canvas.height = document.documentElement.clientHeight;
+var ctx = canvas.getContext("2d");
+ctx.strokeStyle = "none";
+ctx.fillStyle = "black";
+ctx.lineWidth = 3;
+ctx.lineCap = "round"; //选择画笔颜色
+
+var black = document.querySelector('.black');
+var red = document.querySelector('.red');
+var orange = document.querySelector('.orange');
+var green = document.querySelector('.green');
+var purple = document.querySelector('.purple');
+
+black.onclick = function (e) {
+  ctx.strokeStyle = "black";
+};
+
+red.onclick = function (e) {
+  ctx.strokeStyle = "red";
+};
+
+orange.onclick = function (e) {
+  ctx.strokeStyle = "orange";
+};
+
+green.onclick = function (e) {
+  ctx.strokeStyle = "green";
+};
+
+purple.onclick = function (e) {
+  ctx.strokeStyle = "purple";
+};
+
+var painting = false;
+var last; //上一个坐标点
+//检测是否支持触屏
+
+var isTouchDevice = ("ontouchstart" in document.documentElement); //如果是触屏设备
+
+if (isTouchDevice) {
+  //获取第0个触碰点
+  canvas.ontouchstart = function (e) {
+    var x = e.touches[0].clientX;
+    var y = e.touches[0].clientY;
+    last = [x, y]; //第一个last
+  };
+
+  canvas.ontouchmove = function (e) {
+    var x = e.touches[0].clientX;
+    var y = e.touches[0].clientY;
+    drawLine(last[0], last[1], x, y);
+    last = [x, y]; //更新上一次的坐标点
+  };
+} else {
+  //如果不是触屏设备
+  canvas.onmousedown = function (e) {
+    painting = true;
+    last = [e.clientX, e.clientY]; //初始化last
+  };
+
+  canvas.onmousemove = function (e) {
+    if (painting === true) {
+      drawLine(last[0], last[1], e.clientX, e.clientY);
+      last = [e.clientX, e.clientY]; //更新上一次的坐标点
+    }
+  };
+
+  canvas.onmouseup = function () {
+    painting = false;
+  };
+}
+
+function drawLine(x1, y1, x2, y2) {
+  ctx.beginPath();
+  ctx.moveTo(x1, y1);
+  ctx.lineTo(x2, y2);
+  ctx.stroke();
+}</script>
+  </body>
+</html>
