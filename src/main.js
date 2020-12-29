@@ -1,24 +1,4 @@
-<!DOCTYPE html>
-<html lang="zh-CN">
-  <head>
-    <meta charset="UTF-8" />
-    <meta
-      name="viewport"
-      content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover"
-    />
-    <title>简易画板</title>
-    <link rel="stylesheet" href="style.css" />
-  </head>
-  <body>
-    <div class="menu">
-      <div class="black"></div>
-      <div class="red"></div>
-      <div class="orange"></div>
-      <div class="green"></div>
-      <div class="purple"></div>
-    </div>
-    <canvas id="canvas" width="100" height="100"></canvas>
-    <script>
+
       let canvas = document.getElementById("canvas");
 
       //画布的宽高为屏幕的宽高
@@ -97,6 +77,3 @@
         ctx.lineTo(x2, y2);
         ctx.stroke();
       }
-    </script>
-  </body>
-</html>
